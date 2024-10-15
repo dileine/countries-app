@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CountriesList = ({ countries }) => {
   return (
@@ -6,7 +7,11 @@ const CountriesList = ({ countries }) => {
       <h2>Countries</h2>
       <ul>
         {countries.map((country) => (
-          <li key={country.cca3}>{country.name.common}</li>
+          <li key={country.cca3}>
+            <Link to={`/country/${country.name.common}`}>
+              {country.name.common}
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
