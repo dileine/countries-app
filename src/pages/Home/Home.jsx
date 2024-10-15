@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CountriesList from "../../components/CuntriesList/CountriesList";
-import { fetchAllCountries } from "../../api/fetchCountries";
+import {
+  fetchAllCountries,
+  filterCountriesByRegion,
+} from "../../api/fetchCountries";
 import Header from "../../components/Header/Header";
 import Searchbar from "../../components/Searchbar/Searchbar";
+import RegionFilter from "../../components/RegionFilter/RegionFilter";
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -26,10 +30,20 @@ const Home = () => {
     setFilteredCountries(filtered);
   };
 
+  const handleRegionChange = async (region) => {
+    if (region) {
+      const filtered = await filterCountriesByRegion(region);
+      setFilteredCountries(filtered);
+    } else {
+      setFilteredCountries(countries); // Restablir tots el països si no ha res selccionat
+    }
+  };
+
   return (
     <div>
       <Header />
       <Searchbar onSearch={handleSearch} />
+      <RegionFilter onRegionChange={handleRegionChange} />
       <CountriesList countries={filteredCountries} />
     </div>
   );
