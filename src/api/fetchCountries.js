@@ -1,9 +1,11 @@
 import { ALL_COUNTRIES, SEARCH_BY_NAME, FILTER_BY_REGION } from "./endpoints";
 
-export const fetchAllCountries = async () => {
+export const fetchCountries = async (endpoint) => {
   try {
-    const response = await fetch(ALL_COUNTRIES);
-    if (!response.ok) throw new Error("Error fetching countries");
+    const response = await fetch(endpoint);
+    if (!response.ok) {
+      throw new Error(`Error fetching countries from: ${endpoint}`);
+    }
     return await response.json();
   } catch (error) {
     console.error(error);
@@ -11,25 +13,11 @@ export const fetchAllCountries = async () => {
   }
 };
 
-export const searchCountryByName = async (name) => {
-  try {
-    const response = await fetch(SEARCH_BY_NAME(name));
-    if (!response.ok) throw new Error(`Error fetching country by ${name}`);
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-};
+export const fetchAllCountries = () => fetchCountries(ALL_COUNTRIES);
 
-export const filterCountriesByRegion = async (region) => {
-  try {
-    const response = await fetch(FILTER_BY_REGION(region));
-    if (!response.ok)
-      throw new Error(`Error fetching countries for region: ${region}`);
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-};
+export const searchCountryByName = (name) =>
+  fetchCountries(SEARCH_BY_NAME(name));
+
+// Filter countries by region
+export const filterCountriesByRegion = (region) =>
+  fetchCountries(FILTER_BY_REGION(region));
