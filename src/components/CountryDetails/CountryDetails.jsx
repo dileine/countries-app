@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import { searchCountryByName } from "../../api/fetchCountries";
 
 const CountryDetails = () => {
-  const { name } = useParams(); // extract name from URL
+  const { name } = useParams(); // extreure el nom del país de  URL
   const [country, setCountry] = useState(null);
 
   useEffect(() => {
     const getCountry = async () => {
       const countryData = await searchCountryByName(name);
-      setCountry(countryData[0]); //only first element
+      setCountry(countryData[0]);
     };
 
     getCountry();
