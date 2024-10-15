@@ -39,9 +39,13 @@ const Home = () => {
     }
   };
 
+  const resetFilters = () => {
+    setFilteredCountries(countries);
+  };
+
   return (
     <div>
-      <Header />
+      <Header onResetFilters={resetFilters} />
       <Searchbar onSearch={handleSearch} />
       <RegionFilter onRegionChange={handleRegionChange} />
       <CountriesList countries={filteredCountries} />

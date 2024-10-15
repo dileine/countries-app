@@ -1,10 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ onResetFilters }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    console.log("reset");
+    onResetFilters();
+    navigate("/");
+  };
+
   return (
-    <div>
-      <h1>Countries App</h1>
-    </div>
+    <h1 onClick={handleClick} style={{ cursor: "pointer" }}>
+      Countries of the World
+    </h1>
   );
 };
 
