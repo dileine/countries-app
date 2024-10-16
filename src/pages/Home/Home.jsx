@@ -24,6 +24,7 @@ const Home = () => {
 
   const handleSearch = async (query) => {
     const { countryName, capital, language } = query;
+    console.log("Idioma de l'input:", language);
 
     let filteredCountries = countries;
 
@@ -40,7 +41,7 @@ const Home = () => {
       const lowerCaseCapital = capital.toLowerCase();
       filteredCountries = filteredCountries.filter(
         (country) =>
-          country.capital &&
+          country.capital && //verificar que no sigui undefined o null
           country.capital[0].toLowerCase().includes(lowerCaseCapital)
       );
     }
@@ -48,10 +49,12 @@ const Home = () => {
     //Filtrar per idioma
     if (language) {
       const lowerCaseLanguage = language.toLowerCase();
-      filteredCountries = filteredCountries.filter((country) =>
-        Object.values(country.languages).some((lang) =>
-          lang.name.toLowerCase().includes(lowerCaseLanguage)
-        )
+      filteredCountries = filteredCountries.filter(
+        (country) =>
+          country.languages && //verificar que no sigui undefined o null
+          Object.values(country.languages).some((lang) =>
+            lang.toLowerCase().includes(lowerCaseLanguage)
+          )
       );
     }
 
