@@ -12,7 +12,6 @@ test("renders a list of countries", () => {
   ];
 
   //Renderitza el component amb browserRouter per l'ús de Link
-
   render(
     <BrowserRouter>
       <CountriesList countries={countries} />
@@ -23,4 +22,14 @@ test("renders a list of countries", () => {
   expect(screen.getByText("Spain")).toBeInTheDocument();
   expect(screen.getByText("France")).toBeInTheDocument();
   expect(screen.getByText("Italy")).toBeInTheDocument();
+});
+
+test("renders message when there are no countries", () => {
+  render(
+    <BrowserRouter>
+      <CountriesList countries={[]} />
+    </BrowserRouter>
+  );
+
+  expect(screen.getByText("No countries available")).toBeInTheDocument();
 });
