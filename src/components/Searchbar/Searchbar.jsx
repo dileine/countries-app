@@ -1,17 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Searchbar = ({ onSearch }) => {
-  const handleInputChange = (event) => {
-    onSearch(event.target.value);
+  const [countryName, setCountryName] = useState("");
+  const [capital, setCapital] = useState("");
+  const [language, setLanguage] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Llamar a onSearch con el objeto que contiene los criterios de búsqueda
+    onSearch({ countryName, capital, language });
   };
 
   return (
-    <input
-      className='form-control me-2 navbar bg-body-tertiary'
-      type='text'
-      onChange={handleInputChange}
-      placeholder='Search country...'
-    />
+    <form onSubmit={handleSubmit} className='d-flex'>
+      <input
+        type='text'
+        name='countryName'
+        value={countryName}
+        onChange={(e) => setCountryName(e.target.value)}
+        placeholder='Search by country name...'
+        className='form-control me-2'
+      />
+      <input
+        type='text'
+        name='capital'
+        value={capital}
+        onChange={(e) => setCapital(e.target.value)}
+        placeholder='Search by capital...'
+        className='form-control me-2'
+      />
+      <input
+        type='text'
+        name='language'
+        value={language}
+        onChange={(e) => setLanguage(e.target.value)}
+        placeholder='Search by language...'
+        className='form-control me-2'
+      />
+      <button type='submit' className='btn btn-outline-success'>
+        Search
+      </button>
+    </form>
   );
 };
 

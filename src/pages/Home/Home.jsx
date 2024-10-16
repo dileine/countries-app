@@ -22,12 +22,40 @@ const Home = () => {
     getCountries();
   }, []);
 
-  const handleSearch = (query) => {
-    const lowerCaseQuery = query.toLowerCase();
-    const filtered = countries.filter((country) =>
-      country.name.common.toLowerCase().includes(lowerCaseQuery)
-    );
-    setFilteredCountries(filtered);
+  const handleSearch = async (query) => {
+    const { countryName, capital, language } = query;
+
+    let filteredCountries = countries;
+
+    // Filtrar per nom del pais
+    if (countryName) {
+      const lowerCaseCountryName = countryName.toLowerCase();
+      filteredCountries = filteredCountries.filter((country) =>
+        country.name.common.toLowerCase().includes(lowerCaseCountryName)
+      );
+    }
+
+    // Filtrar per capital
+    if (capital) {
+      const lowerCaseCapital = capital.toLowerCase();
+      filteredCountries = filteredCountries.filter(
+        (country) =>
+          country.capital &&
+          country.capital[0].toLowerCase().includes(lowerCaseCapital)
+      );
+    }
+
+    //Filtrar per idioma
+    if (language) {
+      const lowerCaseLanguage = language.toLowerCase();
+      filteredCountries = filteredCountries.filter((country) =>
+        Object.values(country.languages).some((lang) =>
+          lang.name.toLowerCase().includes(lowerCaseLanguage)
+        )
+      );
+    }
+
+    setFilteredCountries(filteredCountries);
   };
 
   const handleRegionChange = async (region) => {
