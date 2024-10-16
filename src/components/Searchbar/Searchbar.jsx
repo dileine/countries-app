@@ -6,13 +6,12 @@ const Searchbar = ({ onSearch }) => {
   };
 
   return (
-    <>
-      <input
-        type='text'
-        onChange={handleInputChange}
-        placeholder='Search country...'
-      />
-    </>
+    <input
+      className='form-control me-2 navbar bg-body-tertiary'
+      type='text'
+      onChange={handleInputChange}
+      placeholder='Search country...'
+    />
   );
 };
 

@@ -11,7 +11,11 @@ const Header = ({ onResetFilters }) => {
   };
 
   return (
-    <h1 onClick={handleClick} style={{ cursor: "pointer" }}>
+    <h1
+      className='text-center my-4 country-link'
+      onClick={handleClick}
+      style={{ cursor: "pointer" }}
+    >
       Countries of the World
     </h1>
   );

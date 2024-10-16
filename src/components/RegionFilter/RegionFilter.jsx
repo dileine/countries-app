@@ -6,14 +6,28 @@ const RegionFilter = ({ onRegionChange }) => {
   };
 
   return (
-    <select onChange={handleChange}>
-      <option value=''>Select a region</option>
-      <option value='Africa'>Africa</option>
-      <option value='America'>America</option>
-      <option value='Asia'>Asia</option>
-      <option value='Europe'>Europe</option>
-      <option value='Oceania'>Oceania</option>
-      <option value='Antarctic'>Antarctic</option>
+    <select className='nav-link dropdown-toggle m-2' onChange={handleChange}>
+      <option className='dropdown-item' value=''>
+        Select a region
+      </option>
+      <option className='dropdown-item' value='Africa'>
+        Africa
+      </option>
+      <option className='dropdown-item' value='America'>
+        America
+      </option>
+      <option className='dropdown-item' value='Asia'>
+        Asia
+      </option>
+      <option className='dropdown-item' value='Europe'>
+        Europe
+      </option>
+      <option className='dropdown-item' value='Oceania'>
+        Oceania
+      </option>
+      <option className='dropdown-item' value='Antarctic'>
+        Antarctic
+      </option>
     </select>
   );
 };

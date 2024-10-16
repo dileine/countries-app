@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { searchCountryByName } from "../../api/fetchCountries";
+import { Card } from "react-bootstrap";
 
 const CountryDetails = () => {
   const { name } = useParams(); // extreure el nom del país de  URL
@@ -16,26 +17,36 @@ const CountryDetails = () => {
   }, [name]);
 
   return (
-    <div>
+    <Card className='text-center m-4'>
       {country ? (
-        <div>
-          <h1>{country.name.common}</h1>
-          <img src={country.flags.png} alt="Country's flag"></img>
-          <p>Capital: {country.capital}</p>
-          <p>Region: {country.region}</p>
-          <p>Population: {country.population}</p>
-          <p>Time Zone: {country.timezones}</p>
-          <p>
+        <Card.Body className='purple'>
+          <Card.Title>{country.name.common}</Card.Title>
+          <Card.Img
+            className='card-img-top'
+            variant='top'
+            src={country.flags.svg}
+            alt="Country's flag"
+          />
+          <Card.Text>Capital: {country.capital}</Card.Text>
+          <Card.Text>Region: {country.region}</Card.Text>
+          <Card.Text>Population: {country.population}</Card.Text>
+          <Card.Text>Time Zone: {country.timezones}</Card.Text>
+          <Card.Text>
             Map:{" "}
-            <a href={country.maps.googleMaps} target='_blank' rel='noreferrer'>
+            <Card.Link
+              className='country-link'
+              href={country.maps.googleMaps}
+              target='_blank'
+              rel='noreferrer'
+            >
               {country.maps.googleMaps}
-            </a>
-          </p>
-        </div>
+            </Card.Link>
+          </Card.Text>
+        </Card.Body>
       ) : (
         <p>Loading...</p>
       )}
-    </div>
+    </Card>
   );
 };
 
