@@ -10,13 +10,8 @@ const CountriesList = ({ countries }) => {
         {countries.map((country) => (
           <Col xs={12} sm={6} md={4} lg={3} key={country.cca3} className='mb-2'>
             <Card>
-              <Card.Body>
+              <Card.Body className='bg-primary-subtle'>
                 <Link to={`/country/${country.name.common}`}>
-                  <Card.Img
-                    variant='top'
-                    className='card-img-top'
-                    src={country.flags.png}
-                  />
                   <Card.Title>{country.name.common}</Card.Title>
                 </Link>
               </Card.Body>
