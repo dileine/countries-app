@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-img-top {
+  height:  20vw; /* Ajusta la altura según sea necesario */
+  max-width: 100%;
+  object-fit: cover; /* Asegura que la imagen mantenga la relación de aspecto y se recorte si es necesario */
+}
