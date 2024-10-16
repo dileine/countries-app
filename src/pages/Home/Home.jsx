@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CountriesList from "../../components/CuntriesList/CountriesList";
+import CountriesList from "../../components/CountriesList/CountriesList";
 import {
   fetchAllCountries,
   filterCountriesByRegion,
