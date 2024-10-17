@@ -74,6 +74,8 @@ const Home = () => {
     setFilteredCountries(countries);
   };
 
+  //TO DO: "Loading..." missatge mentre es carreguen les dades
+
   return (
     <div>
       <Header onResetFilters={resetFilters} />
