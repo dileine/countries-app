@@ -2,9 +2,6 @@
 
 A React application that allows users to view all countries, search by name, and filter by region.
 
-## Demo
-A live demo of the application can be found at [Country App]().
-
 ## Features
 
 - View all countries from the REST Countries API on the homepage.
