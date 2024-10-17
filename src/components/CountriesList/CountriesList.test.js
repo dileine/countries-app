@@ -1,9 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import CountriesList from "./CountriesList";
 import { BrowserRouter } from "react-router-dom";
+import { act } from "react";
 import "@testing-library/jest-dom/extend-expect";
 
-test("renders a list of countries", () => {
+test("renders a list of countries", async () => {
   //dades simulades de països
   const countries = [
     { name: { common: "Spain" }, cca3: "ESP" },
@@ -12,11 +13,13 @@ test("renders a list of countries", () => {
   ];
 
   //Renderitza el component amb browserRouter per l'ús de Link
-  render(
-    <BrowserRouter>
-      <CountriesList countries={countries} />
-    </BrowserRouter>
-  );
+  await act(async () => {
+    render(
+      <BrowserRouter>
+        <CountriesList countries={countries} />
+      </BrowserRouter>
+    );
+  });
 
   //verificar que els noms apareixen al document
   expect(screen.getByText("Spain")).toBeInTheDocument();

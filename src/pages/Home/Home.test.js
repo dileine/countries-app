@@ -53,8 +53,10 @@ describe("Home Component", () => {
     await renderHome();
 
     //verificar que els noms dels països apareixen al document
-    waitFor(() => expect(screen.getByText("Spain").toBeInTheDocument()));
-    waitFor(() => expect(screen.getByText("France").toBeInTheDocument()));
+    await waitFor(() => {
+      expect(screen.getByText("Spain")).toBeInTheDocument();
+      expect(screen.getByText("France")).toBeInTheDocument();
+    });
   });
 
   test("Filters countries by search input", async () => {
@@ -64,11 +66,27 @@ describe("Home Component", () => {
     fireEvent.change(screen.getByPlaceholderText("Search by country name..."), {
       target: { value: "Spain" },
     });
+    //Verifica que "Spain" estigui present i "France" no
+    await waitFor(() => {
+      expect(screen.getByText("Spain")).toBeInTheDocument();
+      expect(screen.queryByText("France")).toBeNull();
+    });
     fireEvent.change(screen.getByPlaceholderText("Search by capital..."), {
       target: { value: "Paris" },
     });
+    //Verifica que "France" estigui present i "Spain" no
+    await waitFor(() => {
+      expect(screen.queryByText("Spain")).toBeNull();
+      expect(screen.getByText("France")).toBeInTheDocument();
+    });
+
     fireEvent.change(screen.getByPlaceholderText("Search by language..."), {
-      target: { value: "French" },
+      target: { value: "Spanish" },
+    });
+    //Verifica que "Spain" estigui present i "France" no
+    await waitFor(() => {
+      expect(screen.getByText("Spain")).toBeInTheDocument();
+      expect(screen.queryByText("France")).toBeNull();
     });
   });
 });

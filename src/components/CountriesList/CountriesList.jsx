@@ -10,7 +10,7 @@ const CountriesList = ({ countries }) => {
   return (
     <Row>
       {countries.map((country) => (
-        <Col xs={12} sm={6} md={4} lg={3} key={country.cca3} className='mb-2'>
+        <Col key={country.cca3} xs={12} sm={6} md={4} lg={3} className='mb-2'>
           <Card className='country-link purple'>
             <Card.Body>
               <Link
