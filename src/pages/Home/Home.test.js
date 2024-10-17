@@ -28,6 +28,20 @@ const mockCountries = [
   },
 ];
 
+const renderHome = async () => {
+  fetchAllCountries.mockResolvedValue(mockCountries);
+
+  await act(async () => {
+    render(
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    );
+  });
+
+  await waitFor(() => expect(fetchAllCountries).toHaveBeenCalledTimes(1));
+};
+
 //agrupar proves relacionades
 describe("Home Component", () => {
   //netejar els mocks abans de cada prova
@@ -36,16 +50,7 @@ describe("Home Component", () => {
   });
 
   test("fetches and display countries in original render", async () => {
-    //simulació funció fetchAllCountries
-    fetchAllCountries.mockResolvedValue(mockCountries);
-
-    await act(async () => {
-      render(
-        <BrowserRouter>
-          <Home />
-        </BrowserRouter>
-      );
-    });
+    await renderHome();
 
     //esperar a que les dades dels països estiguin al document
     await waitFor(() => expect(fetchAllCountries).toHaveBeenCalledTimes(1));
@@ -56,13 +61,7 @@ describe("Home Component", () => {
   });
 
   test("Filters countries by search input", async () => {
-    fetchAllCountries.mockResolvedValue(mockCountries);
-
-    render(
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>
-    );
+    await renderHome();
 
     //esperar a que les dades estiguin al document
     await waitFor(() => expect(fetchAllCountries).toHaveBeenCalledTimes(1));
@@ -71,5 +70,9 @@ describe("Home Component", () => {
     fireEvent.change(screen.getByPlaceholderText("Search by country name..."), {
       target: { value: "Spain" },
     });
+  });
+
+  test("Filters country by capital", async () => {
+    await renderHome();
   });
 });
