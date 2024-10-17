@@ -5,9 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "././styles/index.css";
 
 function App() {
-  <BrowserRouter>
-    <AppRoutes />
-  </BrowserRouter>;
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }
 
 export default App;

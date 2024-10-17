@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Searchbar from "./Searchbar";
-
 import "@testing-library/jest-dom/extend-expect";
 
 test("call onSearch with the inputs values", () => {
