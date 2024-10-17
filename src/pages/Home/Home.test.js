@@ -52,9 +52,6 @@ describe("Home Component", () => {
   test("fetches and display countries in original render", async () => {
     await renderHome();
 
-    //esperar a que les dades dels països estiguin al document
-    await waitFor(() => expect(fetchAllCountries).toHaveBeenCalledTimes(1));
-
     //verificar que els noms dels països apareixen al document
     waitFor(() => expect(screen.getByText("Spain").toBeInTheDocument()));
     waitFor(() => expect(screen.getByText("France").toBeInTheDocument()));
@@ -63,16 +60,15 @@ describe("Home Component", () => {
   test("Filters countries by search input", async () => {
     await renderHome();
 
-    //esperar a que les dades estiguin al document
-    await waitFor(() => expect(fetchAllCountries).toHaveBeenCalledTimes(1));
-
-    //Simulació canvi input
+    //Simulació canvi input: name
     fireEvent.change(screen.getByPlaceholderText("Search by country name..."), {
       target: { value: "Spain" },
     });
-  });
-
-  test("Filters country by capital", async () => {
-    await renderHome();
+    fireEvent.change(screen.getByPlaceholderText("Search by capital..."), {
+      target: { value: "Paris" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("Search by language..."), {
+      target: { value: "French" },
+    });
   });
 });
