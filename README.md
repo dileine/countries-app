@@ -2,6 +2,9 @@
 
 A React application that allows users to view all countries, search by name, and filter by region.
 
+#DEMO
+You can vivit the website [here](https://dileine.github.io/countries-app/)
+
 ## Features
 
 - View all countries from the REST Countries API on the homepage.
